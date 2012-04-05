@@ -6,14 +6,22 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
-#include "prob0012.h"
+//#import <Foundation/Foundation.h>
+#import "Prob0015/prob0015.h"
 
-int main (int argc, const char * argv[])
+/*int main (int argc, char * argv[])
 {
-
+    //NSAutoreleasePool * pool = [NSAutoreleasePool alloc];
+    //[pool init];
+ 
     // insert code here...
-    solveProb0012();
+    //Prob0015Solver * pSolver = [Prob0015Solver alloc];
+    //[pSolver solve];
+    
+    Prob0015 * pProb = new Prob0015();
+    pProb->solve();
+    
+    //[pool drain];
     return 0;
-}
+}*/
 

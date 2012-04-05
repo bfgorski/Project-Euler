@@ -4,8 +4,37 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Prob0015.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Prob0017.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Prob0018.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Prob0021.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Prob0022.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>ProjectEuler.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -13,6 +42,41 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>496606D513FE266800F46784</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>498512CA1509E6FC005A6B39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>498512DF150DFC39005A6B39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4985130B150F0419005A6B39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49851330150F39B1005A6B39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4985134515105388005A6B39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49C08BAE1518695F003865B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49C08BC21519BE27003865B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
