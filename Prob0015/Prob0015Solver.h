@@ -6,8 +6,15 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "../common/ProblemSolver.h"
+#import "../common/Util.h"
 
+@interface Prob0015Solver : ProblemSolver
+{
+    int64 m_result;
+}
 
-@interface Prob0015Solver : NSObject
+-(int64)getResult;
+-(void)solve;
 
 @end

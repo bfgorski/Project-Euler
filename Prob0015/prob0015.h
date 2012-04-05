@@ -9,6 +9,13 @@
 #ifndef ProjectEuler_prob0015_h
 #define ProjectEuler_prob0015_h
 
+typedef long long int int64;
 
+class Prob0015 {
+    
+public:
+    Prob0015() {}
+    virtual int64 solve();
+};
 
 #endif

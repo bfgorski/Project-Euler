@@ -7,3 +7,10 @@
 //
 
 #include <iostream>
+#include "prob0015.h"
+
+int64 Prob0015::solve() {
+    std::cout << "Probl0015 solve" << std::endl;
+    return 123;
+}
+
