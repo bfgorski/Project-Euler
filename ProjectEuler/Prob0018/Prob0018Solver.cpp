@@ -1,0 +1,70 @@
+//
+//  Prob0018Solver.cpp
+//  ProjectEuler
+//
+//  Created by Benjamin Gregorski on 3/13/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#include <iostream>
+#include <string.h>
+#include <cstring>
+#include "Prob0018Solver.h"
+
+static char smallTreeData[] = "3 7 4 2 4 6 8 5 9 3";
+static char treeData[] = "75 95 64 17 47 82 18 35 87 10 \
+20 04 82 47 65 19 01 23 75 03 34 88 02 77 73 07 63 67 99 65 04 28 06 16 70 92 \
+41 41 26 56 83 40 80 70 33 41 48 72 33 47 32 37 16 94 29 \
+53 71 44 65 25 43 91 52 97 51 14 70 11 33 28 77 73 17 78 39 68 17 57 \
+91 71 52 38 17 14 91 43 58 50 27 29 48 63 66 04 68 89 53 67 30 73 16 69 87 40 31 \
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23";
+
+
+void Prob0018Solver::buildTree(char * data)
+{
+    int curRow = 0;
+    int elementsPerRow = 1;
+    int elementsFound = 0;
+    
+    m_tree = new Prob0018Solver::Tree();
+    
+    char * pCurInt = strtok(data, " ");
+    
+    while(pCurInt) {
+        int curInt = atoi(pCurInt);
+        m_tree->m_nodes[curRow][elementsFound].m_value = curInt;        
+        elementsFound++;
+        
+        if (elementsFound >= elementsPerRow) {
+            curRow++;
+            elementsPerRow++;
+            elementsFound = 0;
+            m_tree->m_numLevels++;
+        }
+        pCurInt = strtok(NULL, " ");
+    }
+}
+
+bool Prob0018Solver::solve()
+{
+    buildTree(treeData);
+    m_i64Result = 0;
+    for(int i = 0 ; i < m_tree->m_numLevels; ++i) {
+        for(int j = 0; j <= i; ++j) {
+            int nodeVal = m_tree->m_nodes[i][j].m_value;
+            
+            int parent0 = (j > 0) ? (m_tree->m_nodes[i-1][j-1].m_maxSum) : 0;
+            int parent1 = (j < i) ? (m_tree->m_nodes[i-1][j].m_maxSum) : 0;
+            
+            int maxSum = (parent0 > parent1) ? (nodeVal + parent0) : (nodeVal + parent1);
+            m_tree->m_nodes[i][j].m_maxSum = maxSum;
+            if (maxSum > m_i64Result) {
+                m_i64Result = maxSum;
+            }
+            std::cout << "(" << nodeVal << "," << maxSum << ")";
+        }
+        std::cout << std::endl;
+    }
+    
+    return true;
+}
