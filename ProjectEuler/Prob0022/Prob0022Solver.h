@@ -29,8 +29,6 @@ public:
     
     virtual bool solve();
     
-private:
-    
 };
 
 #endif

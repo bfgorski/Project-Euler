@@ -19,14 +19,86 @@
 #include <iostream>
 #include <fstream>
 #include "Prob0022Solver.h"
+#include <vector>
+
+int compare( char ** s0,  char ** s1);
+
+int compare( char ** s0,  char ** s1) {
+    
+    
+    //if (0 == strcmp("\"VICTORINA\"", s0))
+    //std::cout << "Compare " << s0 << " " << s1 << std::endl;
+    
+    if (NULL == (*s0) && *s1) {
+        return 1;
+    } else if ((*s0) && NULL == (*s1)) {
+        return -1;
+    } else if( !(*s0) && !(*s1)) {
+        return 0;
+    }
+    
+    return strcmp(*s0, *s1);
+}
+
+struct myclass {
+    bool operator() (std::string * s0, std::string * s1) { return (*s0 < *s1);}
+} myobject;
 
 bool Prob0022Solver::solve()
 {
     std::ifstream infile;
-    infile.open("names.txt", std::ios::in|std::ios::ate);
+    infile.open("names.txt", std::ios::in);
+    
+    long begin = infile.tellg();
+    infile.seekg (0, std::ios::end);
+    long end = infile.tellg();
+    
+    std::cout << "size is: " << (end-begin) << " bytes.\n";
+    std::cout << (46*1024) << std::endl;
     
     if (infile.is_open()) {
-        <#statements#>
+        infile.seekg (0, std::ios::beg);
+        long bufferSize = (end-begin) + 1;
+        char * data = new char[bufferSize];
+        memset(data, 0, bufferSize);
+        infile.read(data, bufferSize);
+        
+        std::vector<std::string*> names;
+        
+        char * pch = strtok (data, ",");
+        while (pch != NULL)
+        {
+            std::string * s = new std::string(pch);
+            names.push_back(s);
+            //std::cout << s << std::endl;
+            pch = strtok (NULL, ",");
+        }
+        
+        std::sort(names.begin(), names.end(), myobject);
+        
+        int64 total = 0;
+        int i = 1;
+        int base = int('A') - 1;
+        for (std::vector<std::string*>::iterator it = names.begin(); it != names.end(); ++it, ++i) {
+            std::string * s = (*it);
+            const char * cStr = s->c_str();
+            
+            int score = 0;
+            while((*cStr) != '\0') {
+                char c = *cStr;
+                if (isalpha(c)) {
+                    score += (int(c) - base);
+                }
+                ++cStr;
+            }
+            
+            total += (i*score);
+            std::cout << (*(*it)) << " " << (i*score) << " " << total << std::endl;
+        }
+        
+        this->m_i64Result = total;
+    } else {
+        std::cout << "Unable to open names.txt" << std::endl;
     }
     
     return true;

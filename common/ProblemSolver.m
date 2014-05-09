@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ProblemSolver.h"
+/*#import "ProblemSolver.h"
 
 @implementation ProblemSolver
-
-@end
+{
+    
+}
+@end*/

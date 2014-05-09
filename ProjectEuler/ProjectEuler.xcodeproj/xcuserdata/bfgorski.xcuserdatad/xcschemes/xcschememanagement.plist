@@ -31,6 +31,16 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>Prob0023.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Prob0024.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>ProjectEuler.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -41,6 +51,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>491BBB46175B4C1300AAE92E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>492967011732525A007043B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>496606D513FE266800F46784</key>
 		<dict>
 			<key>primary</key>
