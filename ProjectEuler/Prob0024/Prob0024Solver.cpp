@@ -16,74 +16,79 @@
 
 #include "Prob0024Solver.h"
 #include <iostream>
-#include <fstream>
-#include <math.h>
 
-#define MAX_PERM 1000000
-#define LAST_POSITION 9
-#define MAX_VALUE 9
+// range => positions, digits => symbols
+void Prob0024Solver::permutation(Range& r, Digits& d) {
+    if(m_NumPermutations >= m_PermToFind) {
+        return;
+    }
+    if (2 == r.size) {
+        if((NUM_DIGITS-2) == r.start) {
+            m_NumPermutations += 2;
+            if(m_NumPermutations == m_PermToFind) {
+                m_FinalDigits = d;
+                int temp = m_FinalDigits.d[NUM_DIGITS-1];
+                m_FinalDigits.d[NUM_DIGITS-1] = m_FinalDigits.d[NUM_DIGITS-2];
+                m_FinalDigits.d[NUM_DIGITS-2] = temp;
+                return;
+            }
+            //std::cout << "P: " << d.d[0] << "," << d.d[1] << "," << d.d[2] << "," << d.d[3] << std::endl;
+            //std::cout << "P: " << d.d[0] << "," << d.d[1] << "," << d.d[3] << "," << d.d[2] << std::endl;
+            return;
+        } else {
+            //std::cerr << "Start and Size Mismatch Start: " << r.start << " Size: " << r.size << std::endl;
+            return;
+        }
+    } else {
+        // iterating position start + i
+        Range newRange = {r.start + 1, r.size - 1};
+        Digits newDigits = d;
+        
+        // cycle through all values for digit r.start
+        // which is all digits
+        for(int i = 0; i < (r.size); ++i) {
+            newDigits.count = d.count - i;
+            
+            // starting digit is d.digits[i+r.start]
+            // e.g digits are A C D
+            // starting digit sequence in current digit is A => C => D
+            int startDigit = d.d[i+r.start];
+            //std::cout << "Start Digit " << startDigit << " Pos " << (i+r.start) << std::endl;
+            
+            // new digits are the digits in d[r.start] ... d[r.start + r.size] except startDigir
+            // newDigits.d[i+r.start+1] ... newDigits.d[NUM_DIGITS] is all digits
+            int k = r.start+1;
+            for (int j = r.start; j < NUM_DIGITS; ++j) {
+                if(d.d[j] != startDigit) {
+                    newDigits.d[k++] = d.d[j];
+                }
+            }
+            newDigits.d[r.start] = startDigit;
+            //std::cout << "ND " << newDigits.d[0] << "," << newDigits.d[1] << "," << newDigits.d[2] << "," << newDigits.d[3] << std::endl;
+
+            permutation(newRange,newDigits);
+        }
+    }
+}
+
+void Prob0024Solver::printFinalDigits() const
+{
+    std::cout << "[";
+    for(int i = 0; i < NUM_DIGITS; ++i) {
+        std::cout << m_FinalDigits.d[i];
+    }
+    std::cout << "]" << std::endl;
+}
 
 bool Prob0024Solver::solve()
 {
-    int count = 1;
-    m_numPerms = 1;
-    m_startPos = 8;
-    m_endPos = 9;
-    //m_perm = {0,1,2,3,4,5,6,7,8,9};
+    m_PermToFind = 1000000;
+    m_NumPermutations = 0;
+    Range r = {0,10};
+    Digits d = { 4, {0, 1,2,3, 4, 5, 6, 7, 8, 9} };
     
-    //nextPerm(LAST_POSITION-1);
-    
+    permutation(r,d);
+    printFinalDigits();
     return true;
 }
-
-/*int Prob0024Solver::nextPerm(int curPos) {
-    
-    if (curPos < (LAST_POSITION-1)) {
-        nextPerm(curPos+1);
-        
-        if (MAX_VALUE == m_perm[curPos]) {
-            return 0;
-        }
-        
-        // increment digit and recurse again
-        m_perm[curPos]++;
-        m_startPos = curPos;
-        resetPerm();
-        int finished = nextPerm(curPos+1);
-    } else {
-        // count this permutation
-        m_numPerms++;
-        
-        
-    }
-    
-}*/
-
-void Prob0024Solver::resetPerm() {
-    /*if (MAX_VALUE == m_perm[m_startPos]) {
-        // m_startPos - 1 will be incremented 1 and m_startPos ... m_endPos will be reset
-        m_perm[m_startPos-1]++;
-        
-        int isUsed[10] = {0};
-        
-        for (int i = 0; i < m_startPos; ++i) {
-            isUsed[m_perm[i]] = 1;
-        }
-        
-        // go through the digits and reset the permutation
-        for (int i = 0; i < 10; ++i) {
-            if (!isUser[i]) {
-                m_perm[m_startPos++] = i;
-            }
-        }
-        return;
-    }*/
-}
-
-void Prob0024Solver::printPerm() {
-   // std::cout << "[" << m_perm[0] << "," << m_perm[1] << "," <<< m_perm[2] << "," << m_perm[3] << "," << m_perm[4] << ","
-     //                << m_perm[5] << "," <<< m_perm[6] << "," << m_perm[7] << "," << m_perm[8] << "," << m_perm[9] << "]" << std::endl;
-}
-
-
 
